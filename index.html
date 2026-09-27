@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f2f4f0">
 <meta name="color-scheme" content="light">
-<meta name="description" content="O Cubo Político: um modelo de classificação política com três eixos independentes (economia, dinâmica e visão social) e oito octantes.">
+<meta name="description" content="O Cubo Político: três perguntas no lugar da régua esquerda-direita. Economia, poder e costumes formam um cubo com oito octantes, cada um com governos de verdade, critérios e fontes.">
 <title>O Cubo Político</title>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="O Cubo Político">
 <meta property="og:title" content="O Cubo Político">
-<meta property="og:description" content="Três perguntas no lugar da régua esquerda-direita: economia, dinâmica e visão social formam um cubo com oito octantes.">
-<meta property="og:image" content="/og.png">
+<meta property="og:description" content="Três perguntas no lugar da régua esquerda-direita: quanto da economia passa pelo governo, se ele respeitou as regras do jogo e para onde a lei empurrou os costumes.">
+<meta property="og:image" content="https://cubo-politico.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:url" content="https://cubo-politico.vercel.app">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6 56 19 32 32 8 19Z' fill='%23d37800'/%3E%3Cpath d='M8 19 32 32 32 58 8 45Z' fill='%23dc3864'/%3E%3Cpath d='M56 19 32 32 32 58 56 45Z' fill='%231c67a4'/%3E%3Cpath d='M32 6 56 19 56 45 32 58 8 45 8 19Z M8 19 32 32 56 19 M32 32 32 58' fill='none' stroke='%231a2230' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
@@ -40,6 +42,7 @@
 html{background:var(--papel);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;font-family:var(--f);font-size:18px;line-height:1.55;font-weight:400;font-stretch:100%;color:var(--nanquim);background:var(--papel);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;overflow-x:clip}
 button{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--nanquim);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -189,6 +192,23 @@ body.barra-no-painel .aba-vista{display:inline-block}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;padding:0;list-style:none}
 .chips li{font-size:12.5px;font-weight:650;font-stretch:88%;padding:2px 9px 3px;border:1px solid var(--nanquim);border-radius:999px}
 .ficha dl{margin:0;font-size:15.5px;line-height:1.5}
+.ficha-frase{margin:0 0 12px;font-size:15.5px;line-height:1.5}
+.ficha-rot{margin:0 0 4px;font-size:12.5px;font-weight:700;font-stretch:88%;color:var(--grafite)}
+.ficha-govs{list-style:none;margin:0 0 14px;padding:0;font-size:15px;line-height:1.35}
+.ficha-govs li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgb(26 34 48 / .18)}
+.ficha-govs a{font-weight:650;text-decoration:none}
+.ficha-govs a:hover{text-decoration:underline}
+.ficha-govs span{flex:none;color:var(--grafite);font-size:13.5px;font-variant-numeric:tabular-nums}
+.ficha .btn--oct{display:flex;align-items:center;justify-content:center;width:100%;text-decoration:none;background:var(--c);border-color:var(--c);color:#fff}
+.ficha .btn--oct:hover{background:var(--nanquim);border-color:var(--nanquim);color:var(--papel-2)}
+.lista-pag{list-style:none;margin:.4em 0 1em;padding:0;display:grid;gap:6px}
+.lista-pag a{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;padding:7px 10px 8px;border:1px solid var(--nanquim);background:var(--papel-2);text-decoration:none;transition:background .2s}
+.lista-pag a:hover,.lista-pag a:focus-visible{background:#fff}
+.lista-pag .num{grid-row:1/3;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;font-size:13px;font-weight:800}
+.lista-pag .nm{font-size:14.5px;font-weight:700;font-stretch:92%;line-height:1.25}
+.lista-pag small{font-size:12.5px;line-height:1.3;color:var(--grafite)}
+.links-fim{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px}
+.credito a{color:inherit;text-underline-offset:3px;margin-left:4px;white-space:nowrap}
 .ficha dt{margin-top:9px;font-size:12.5px;font-weight:700;font-stretch:88%;color:var(--grafite)}
 .ficha dd{margin:1px 0 0}
 .ficha-cab{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -304,6 +324,8 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
   .ficha.troca{animation:none}
   .js .passo{transition:none}
 }
+.teste-link{margin:0 0 14px;padding:10px 12px;font-size:14.5px;line-height:1.45;background:rgb(47 128 110 / .08);border-left:3px solid #2f806e}
+.teste-link a{font-weight:750}
 
 </style>
 </head>
@@ -320,7 +342,7 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
   <h1 class="hero-titulo"><span>O Cubo</span><span>Político</span></h1>
   <div class="hero-lado">
     <p class="lede">Um sistema de classificação política que abandona a disputa entre esquerda e direita. No lugar de uma pergunta, faz três. Cada resposta vira um eixo, e os três eixos formam um cubo.</p>
-    <p class="credito">Modelo criado por Shanti.</p>
+    <p class="credito">Modelo do Shanti. Versão 2, revisada com Davi. <a href="metodo.html">Como o cubo classifica</a></p>
     <p class="deixa"><i aria-hidden="true"></i>Role para montar o cubo</p>
   </div>
 </header>
@@ -336,80 +358,86 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
   <section class="passo passo--capitulo passo-cena" id="plano" data-cena="plano" data-cap="plano">
     <p class="dim dim--2" aria-hidden="true">2D</p>
     <h2>O plano melhora, mas força casamentos</h2>
-    <p>O gráfico de quatro quadrantes acrescenta um eixo vertical, do autoritarismo ao libertarianismo. Ajuda. Só que esse eixo achata duas coisas diferentes numa só: as pautas sociais e o método político.</p>
+    <p>O gráfico de quatro quadrantes acrescenta um eixo vertical, do autoritarismo ao libertarianismo. Ajuda. Só que esse eixo achata duas coisas diferentes numa só: o que o governo faz com os costumes e se ele respeita as regras do jogo.</p>
     <p>Daí saem agrupamentos que não se sustentam no mundo real.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="planoA" data-cap="plano">
-    <h2>Fascismo e social-democracia no mesmo quadrado</h2>
-    <p>O eixo vertical mede autoridade sem separar costumes de revolução. Por isso, no quadrante de cima à esquerda, o fascismo clássico, que queria destruir a democracia pelas armas para impor uma hierarquia nacionalista rígida, fica junto da social-democracia nórdica, que opera dentro de democracias liberais consolidadas.</p>
-    <p>Pelo gráfico, a Suécia e a Alemanha nazista teriam a mesma natureza política.</p>
+    <h2>Uma democracia e uma ditadura no mesmo quadrado</h2>
+    <p>A Itália de Mussolini e a Irlanda de De Valera caem juntas no alto, do lado do Estado: os dois puseram o Estado na economia e a religião na lei.</p>
+    <p>O gráfico esconde a diferença que mais importa. Mussolini proibiu os partidos de oposição em 1926. De Valera perdeu a eleição de 1948 e entregou o cargo.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="planoB" data-cap="plano">
-    <h2>O ancap e o conservador fiscal lado a lado</h2>
-    <p>Embaixo, à direita, o anarcocapitalista radical quer abolir o Estado, as leis públicas e a polícia. O conservador fiscal moderado quer um Estado forte, com leis de segurança pesadas, tribunais ativos e controle rigoroso de fronteiras.</p>
-    <p>Os dois dividem o quadrante só porque defendem o livre mercado. No mundo real, a relação deles com a lei e a ordem é oposta.</p>
+    <h2>Do lado do mercado, o mesmo problema</h2>
+    <p>Os EUA de Reagan e o Chile de Pinochet também dividem um quadrado: menos Estado na economia e lei a favor da tradição.</p>
+    <p>Reagan foi eleito duas vezes e passou o cargo no prazo. Pinochet chegou por um golpe em 1973 e fechou o Congresso.</p>
   </section>
 
   <section class="passo passo--capitulo passo-cena" id="cubo" data-cena="cubo" data-cap="cubo">
     <p class="dim dim--3" aria-hidden="true">3D</p>
     <h2>O cubo: três perguntas independentes</h2>
-    <p>O cubo separa o que o plano misturava. Cada eixo responde a uma pergunta, e a resposta de uma não depende das outras. Três eixos dividem o espaço em oito octantes.</p>
+    <p>O cubo separa o que o plano misturava. Cada eixo responde a uma pergunta sobre o que o governo fez, e a resposta de uma não depende das outras. Três eixos dividem o espaço em oito octantes.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="eixoX" data-cap="cubo">
     <h2>Economia</h2>
-    <p class="pergunta">Quem deve comandar a economia?</p>
-    <p>À esquerda, o intervencionismo estatal, com o Estado mandando na economia. À direita, o livre mercado. Esquerda e direita continuam no modelo, mas aqui falam só de economia.</p>
+    <p class="pergunta">Quanto da economia passa pelo governo?</p>
+    <p>De um lado, mais Estado: gasto público acima da média dos países ricos, estatais, preços tabelados. Do outro, menos Estado: estatais vendidas, preços livres, comércio aberto. Menos Estado inclui nenhum Estado.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="eixoY" data-cap="cubo">
-    <h2>Dinâmica</h2>
-    <p class="pergunta">Como as regras devem mudar?</p>
-    <p>Embaixo, a mudança gradual e lenta, dentro das regras vigentes. Em cima, a ruptura radical das estruturas e das regras. É uma pergunta sobre método: dá para querer o mesmo destino e discordar do caminho.</p>
+    <h2>Poder</h2>
+    <p class="pergunta">Chegou e governou dentro das regras do jogo?</p>
+    <p>Embaixo, quem chegou e saiu pelo voto, com oposição, imprensa e tribunais funcionando. Em cima, quem rompeu as regras: golpe, Congresso fechado, eleição cancelada, oposição proibida. Basta um desses fatos para subir de andar.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="eixoZ" data-cap="cubo">
-    <h2>Visão social</h2>
-    <p class="pergunta">O foco é o indivíduo ou o grupo?</p>
-    <p>No fundo do cubo, o individualismo, que prioriza a autonomia de cada pessoa. Na frente, o identitarismo, com foco em grupos e coletivos identitários.</p>
+    <h2>Costumes</h2>
+    <p class="pergunta">Para onde a lei empurrou a família, a religião, a sexualidade e o papel da mulher?</p>
+    <p>No fundo, a lei que conserva o modelo tradicional: casamento indissolúvel, religião da maioria na escola, sexo só no casamento, mulher subordinada ao marido. Na frente, a lei que transforma. O eixo mede a direção da lei, não se ela foi boa.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="predio" data-cap="cubo">
     <h2>Pense num prédio de dois andares</h2>
-    <p>No andar de cima fica o pessoal que quer mudar tudo na marra. No de baixo, quem quer manter as regras e a lei como estão.</p>
-    <p>O lado esquerdo é de quem quer o Estado mandando em tudo, e o direito, de quem prefere o livre mercado e cada um por si. A frente é de quem foca em grupos e identidade, e os fundos, de quem foca só no indivíduo.</p>
+    <p>No andar de baixo ficam os governos que chegaram e saíram pelas regras. No de cima, os que romperam as regras para chegar ou para ficar.</p>
+    <p>Num lado do prédio, mais Estado na economia; no outro, menos. Na frente, leis que transformam os costumes; nos fundos, leis que conservam.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="octantes" data-cap="cubo">
-    <h2>Oito octantes, oito nomes fáceis</h2>
-    <p>Cada combinação de respostas cai numa região do cubo. O modelo deu um nome fácil para cada uma.</p>
+    <h2>Oito octantes, oito combinações</h2>
+    <p>Cada combinação de respostas cai numa região do cubo. O número vem da posição, e o nome são as próprias respostas.</p>
     <div class="lista-oct" id="lista-oct"></div>
-    <p class="nota">Passe o mouse ou toque num nome para ver onde ele fica.</p>
+    <p class="nota">Passe o mouse ou toque numa combinação para ver onde ela fica.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="casais" data-cap="cubo">
     <h2>No cubo, cada um vai para o seu andar</h2>
-    <p>Os pares que o plano juntava agora ficam longe. O fascismo sobe para o andar de cima, no octante 5, e a social-democracia fica embaixo e na frente, no octante 3.</p>
-    <p>O ancap também sobe, para o octante 6. O conservador fiscal, que quer manter a lei e a ordem, fica no andar de baixo, do lado do mercado, no octante 2.</p>
+    <p>Uma pergunta separa os pares: chegou e governou dentro das regras? Mussolini sobe para o octante 5, e De Valera fica no 1. Pinochet sobe para o 6, e Reagan fica no 2.</p>
+    <p>A economia e os costumes continuam iguais dentro de cada par. Só o andar muda.</p>
   </section>
 
   <section class="passo passo-cena" data-cena="continuo" data-cap="cubo">
     <h2>Oito regiões de um cubo só</h2>
-    <p>Os oito cubinhos são regiões de um mesmo espaço contínuo. Cada pessoa é um ponto com três coordenadas, uma por pergunta.</p>
+    <p>Os oito cubinhos são regiões de um mesmo espaço contínuo. Cada governo é um ponto com três coordenadas, uma por pergunta.</p>
     <p>O octante diz em que região o ponto está. A posição exata mostra o quanto ele pende para cada lado. No corte, dá para ver as cores mudando aos poucos por dentro do cubo.</p>
-    <p><button class="link" type="button" data-ir="explorar">Abrir o explorador</button></p>
+  </section>
+
+  <section class="passo passo-cena" id="governos" data-cena="octantes" data-cap="cubo">
+    <h2>Governos de verdade, com prova</h2>
+    <p>Cada octante tem uma página com os critérios e os governos que passaram nos três testes. Em cada eixo, a melhor evidência, a melhor contraprova e a fonte. E o custo humano, com a mesma régua para todos.</p>
+    <ul class="lista-pag" id="lista-pag"><li><a href="octante-1.html" data-oct="0" style="--c:#9e441d"><span class="num" aria-hidden="true">1</span><span class="nm">Octante 1: Mais Estado · Dentro das regras · Conserva</span><small>Irlanda de De Valera</small></a></li><li><a href="octante-2.html" data-oct="1" style="--c:#1c67a4"><span class="num" aria-hidden="true">2</span><span class="nm">Octante 2: Menos Estado · Dentro das regras · Conserva</span><small>EUA de Reagan, Austrália de Howard</small></a></li><li><a href="octante-3.html" data-oct="2" style="--c:#9f366c"><span class="num" aria-hidden="true">3</span><span class="nm">Octante 3: Mais Estado · Dentro das regras · Transforma</span><small>Suécia de Palme, Índia de Nehru, Argentina de Alfonsín</small></a></li><li><a href="octante-4.html" data-oct="3" style="--c:#5e499d"><span class="num" aria-hidden="true">4</span><span class="nm">Octante 4: Menos Estado · Dentro das regras · Transforma</span><small>Nova Zelândia de Lange, Chile de Lagos, EUA de Obama</small></a></li><li><a href="octante-5.html" data-oct="4" style="--c:#d37800"><span class="num" aria-hidden="true">5</span><span class="nm">Octante 5: Mais Estado · Rompeu as regras · Conserva</span><small>Itália de Mussolini, Alemanha de Hitler, URSS de Stálin, Espanha de Franco</small></a></li><li><a href="octante-6.html" data-oct="5" style="--c:#0998bb"><span class="num" aria-hidden="true">6</span><span class="nm">Octante 6: Menos Estado · Rompeu as regras · Conserva</span><small>Portugal de Salazar, Chile de Pinochet, Argentina da junta militar</small></a></li><li><a href="octante-7.html" data-oct="6" style="--c:#dc3864"><span class="num" aria-hidden="true">7</span><span class="nm">Octante 7: Mais Estado · Rompeu as regras · Transforma</span><small>Rússia de Lênin, Turquia de Atatürk, China de Mao, Cuba de Fidel, Camboja do Khmer Vermelho</small></a></li><li><a href="octante-8.html" data-oct="7" style="--c:#995dc7"><span class="num" aria-hidden="true">8</span><span class="nm">Octante 8: Menos Estado · Rompeu as regras · Transforma</span><small>Peru de Fujimori</small></a></li></ul>
+    <p class="links-fim"><a class="link" href="metodo.html">Como o cubo classifica um governo</a><a class="link" href="teste.html">Onde você fica? Faça o teste</a><button class="link" type="button" data-ir="explorar">Abrir o explorador</button></p>
   </section>
 
   <section class="passo passo--explorar passo-cena" id="explorar" data-cena="explorar" data-cap="explorar" aria-labelledby="exp-tit">
     <div class="painel-exp" id="painel-exp">
       <div class="painel-cab">
         <h2 id="exp-tit">Explore o cubo</h2>
-        <p>Escolha um octante, mude a vista ou responda às três perguntas para marcar o seu ponto.</p>
+        <p>Escolha um octante para ver os governos que caem nele, mude a vista ou marque um ponto com as três perguntas.</p>
         <div class="abas" role="tablist" aria-label="Painel do cubo">
           <button role="tab" id="aba-oct" aria-controls="painel-oct" aria-selected="true">Octantes</button>
-          <button role="tab" id="aba-ponto" aria-controls="painel-ponto" aria-selected="false" tabindex="-1">Seu ponto</button>
+          <button role="tab" id="aba-ponto" aria-controls="painel-ponto" aria-selected="false" tabindex="-1">Marcar ponto</button>
           <button role="tab" id="aba-vista" class="aba-vista" aria-controls="painel-vista" aria-selected="false" tabindex="-1">Vista</button>
         </div>
       </div>
@@ -425,25 +453,26 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
               <div class="planta-grade" data-andar="0"></div>
             </div>
           </div>
-          <p class="legenda">Cada andar visto de cima: Estado à esquerda, mercado à direita, fundos em cima e frente embaixo.</p>
+          <p class="legenda">Cada andar visto de cima: mais Estado à esquerda, menos Estado à direita, conserva em cima e transforma embaixo.</p>
           <article class="ficha" id="ficha" aria-live="polite"></article>
           <p class="atalhos">No teclado: 1 a 8 escolhem um octante, as setas giram o cubo e Esc limpa a escolha.</p>
         </div>
         <div role="tabpanel" id="painel-ponto" aria-labelledby="aba-ponto" hidden>
+          <p class="teste-link">Prefere responder afirmações? <a href="teste.html">Faça o teste</a>: 24 afirmações, cerca de 5 minutos, e o ponto aparece aqui.</p>
           <div class="q">
-            <label for="r-x"><span>Economia</span>Quem deve comandar a economia?</label>
+            <label for="r-x"><span>Economia</span>Quanto da economia passa pelo governo?</label>
             <input type="range" id="r-x" min="-100" max="100" step="1" value="0" data-eixo="0">
-            <div class="pontas" aria-hidden="true"><span>Estado</span><span>Mercado</span></div>
+            <div class="pontas" aria-hidden="true"><span>Mais Estado</span><span>Menos Estado</span></div>
           </div>
           <div class="q">
-            <label for="r-y"><span>Dinâmica</span>Como as regras devem mudar?</label>
+            <label for="r-y"><span>Poder</span>Chegou e governou dentro das regras do jogo?</label>
             <input type="range" id="r-y" min="-100" max="100" step="1" value="0" data-eixo="1">
-            <div class="pontas" aria-hidden="true"><span>Institucional</span><span>Ruptura</span></div>
+            <div class="pontas" aria-hidden="true"><span>Dentro das regras</span><span>Rompeu as regras</span></div>
           </div>
           <div class="q">
-            <label for="r-z"><span>Visão social</span>O foco é o indivíduo ou o grupo?</label>
+            <label for="r-z"><span>Costumes</span>Para onde a lei empurrou os costumes?</label>
             <input type="range" id="r-z" min="-100" max="100" step="1" value="0" data-eixo="2">
-            <div class="pontas" aria-hidden="true"><span>Indivíduo</span><span>Grupos</span></div>
+            <div class="pontas" aria-hidden="true"><span>Conserva</span><span>Transforma</span></div>
           </div>
           <div class="leitura" aria-live="polite">
             <p class="leitura-tit" id="leitura-tit"></p>
@@ -485,7 +514,7 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
 <div class="dica-hover" id="dica-hover" aria-hidden="true"></div>
 
 <aside class="carimbo" aria-label="Carimbo da prancha">
-  <div class="carimbo-tit"><strong>O Cubo Político</strong><span>Modelo de Shanti</span></div>
+  <div class="carimbo-tit"><strong>O Cubo Político</strong><span>Modelo de Shanti · versão 2</span></div>
   <div class="carimbo-vista"><span>Vista</span><b id="carimbo-vista">Perspectiva</b></div>
   <nav class="carimbo-nav" aria-label="Capítulos">
     <button type="button" data-ir="linha"><small>1D</small>Linha</button>
@@ -497,6 +526,7 @@ noscript p{position:relative;z-index:9;margin:0;padding:14px 20px;background:var
 <noscript><p>Esta página usa JavaScript para desenhar o cubo. O texto do modelo aparece normalmente; ative o JavaScript para ver as animações e o explorador.</p></noscript>
 
 <script>
+const DADOS = {"octantes":[{"n":1,"cod":"EIC","cor":"#9e441d","palavras":["Mais Estado","Dentro das regras","Conserva os costumes"],"frase":"O Estado dono de parte da economia e guardião dos costumes, escolhido e trocado pelo voto.","govs":[{"id":"irlanda","rotulo":"Irlanda de De Valera","anos":"1932-1948"}]},{"n":2,"cod":"MIC","cor":"#1c67a4","palavras":["Menos Estado","Dentro das regras","Conserva os costumes"],"frase":"Mercado livre na economia, tradição na lei e troca de poder pelo voto.","govs":[{"id":"reagan","rotulo":"EUA de Reagan","anos":"1981-1989"},{"id":"howard","rotulo":"Austrália de Howard","anos":"1996-2007"}]},{"n":3,"cod":"EIT","cor":"#9f366c","palavras":["Mais Estado","Dentro das regras","Transforma os costumes"],"frase":"Estado grande na economia, lei mudando os costumes e poder trocado pelo voto.","govs":[{"id":"palme","rotulo":"Suécia de Palme","anos":"1969-1976"},{"id":"nehru","rotulo":"Índia de Nehru","anos":"1947-1964"},{"id":"alfonsin","rotulo":"Argentina de Alfonsín","anos":"1983-1989"}]},{"n":4,"cod":"MIT","cor":"#5e499d","palavras":["Menos Estado","Dentro das regras","Transforma os costumes"],"frase":"Mercado aberto, costumes mudando por lei e poder trocado pelo voto.","govs":[{"id":"lange","rotulo":"Nova Zelândia de Lange","anos":"1984-1989"},{"id":"lagos","rotulo":"Chile de Lagos","anos":"2000-2006"},{"id":"obama","rotulo":"EUA de Obama","anos":"2009-2017"}]},{"n":5,"cod":"ERC","cor":"#d37800","palavras":["Mais Estado","Rompeu as regras","Conserva os costumes"],"frase":"O Estado manda na economia, o governo manda sem regras e a lei puxa a família para a tradição.","govs":[{"id":"mussolini","rotulo":"Itália de Mussolini","anos":"1922-1943"},{"id":"hitler","rotulo":"Alemanha de Hitler","anos":"1933-1945"},{"id":"stalin","rotulo":"URSS de Stálin","anos":"1924-1953"},{"id":"franco","rotulo":"Espanha de Franco","anos":"1936-1975"}]},{"n":6,"cod":"MRC","cor":"#0998bb","palavras":["Menos Estado","Rompeu as regras","Conserva os costumes"],"frase":"Mercado livre, poder sem regras e lei puxando os costumes para a tradição.","govs":[{"id":"salazar","rotulo":"Portugal de Salazar","anos":"1932-1968"},{"id":"pinochet","rotulo":"Chile de Pinochet","anos":"1973-1990"},{"id":"junta","rotulo":"Argentina da junta militar","anos":"1976-1983"}]},{"n":7,"cod":"ERT","cor":"#dc3864","palavras":["Mais Estado","Rompeu as regras","Transforma os costumes"],"frase":"O Estado dono da economia, o poder tomado à força e a lei desmontando a tradição.","govs":[{"id":"lenin","rotulo":"Rússia de Lênin","anos":"1917-1924"},{"id":"ataturk","rotulo":"Turquia de Atatürk","anos":"1923-1938"},{"id":"mao","rotulo":"China de Mao","anos":"1949-1976"},{"id":"fidel","rotulo":"Cuba de Fidel","anos":"1959-2008"},{"id":"khmer","rotulo":"Camboja do Khmer Vermelho","anos":"1975-1979"}]},{"n":8,"cod":"MRT","cor":"#995dc7","palavras":["Menos Estado","Rompeu as regras","Transforma os costumes"],"frase":"Mercado livre, poder sem regras e lei puxando os costumes para longe da tradição.","govs":[{"id":"fujimori","rotulo":"Peru de Fujimori","anos":"1990-2000"}]}],"marcos":[{"nome":"Itália de Mussolini","plano":[-0.66,0.7],"cubo":[-0.74,0.78,-0.3],"par":0},{"nome":"Irlanda de De Valera","plano":[-0.34,0.36],"cubo":[-0.55,-0.6,-0.55],"par":0},{"nome":"Chile de Pinochet","plano":[0.56,0.7],"cubo":[0.72,0.7,-0.45],"par":1},{"nome":"EUA de Reagan","plano":[0.28,0.36],"cubo":[0.55,-0.62,-0.4],"par":1}]};
 (() => {
 'use strict';
 const raiz = document.documentElement;
@@ -572,51 +602,26 @@ const CORES = {
 };
 
 /* índice = (x>0) + 2·(z>0) + 4·(y>0); o número do octante é índice + 1.
-   x: Estado (−) / Mercado (+) · y: Institucional (−) / Ruptura (+) · z: Indivíduo, fundo (−) / Grupos, frente (+) */
-const OCTANTES = [
-  { cor: '#9e441d', nome: 'O conservador estatista', onde: 'Andar de baixo, lado esquerdo, no fundo.',
-    oque: 'Quer um governo forte controlando a economia e a ordem moral, mas sem inventar moda de grupos e sem querer derrubar o governo à força.',
-    extra: ['Exemplo do modelo', 'A Rússia de Putin.'] },
-  { cor: '#1c67a4', nome: 'O capitalista liberal', onde: 'Andar de baixo, lado direito, no fundo.',
-    oque: 'O liberal clássico. Quer economia livre e o menor imposto possível, respeita as leis e a democracia e não quer revolução nenhuma.' },
-  { cor: '#9f366c', nome: 'O social-democrata', onde: 'Andar de baixo, lado esquerdo, na frente.',
-    oque: 'Aceita a democracia, quer pagar imposto para ajudar os outros e apoia pautas sociais, mas pelo voto, sem pegar em armas.',
-    extra: ['Apelido no modelo', '"Esquerdinha da Suécia".'] },
-  { cor: '#5e499d', nome: 'O direitista "woke"', onde: 'Andar de baixo, lado direito, na frente.',
-    oque: 'Defende o capitalismo e o livre mercado, mas adora fazer campanha de diversidade e inclusão para agradar a galera.',
-    extra: ['Exemplo do modelo', 'Grandes empresas, como Nike e Coca-Cola.'] },
-  { cor: '#d37800', nome: 'O ditador fascista', onde: 'Andar de cima, lado esquerdo, no fundo.',
-    oque: 'O Estado manda em absolutamente tudo, destrói a democracia, odeia identitarismo e impõe uma hierarquia militar e racial.',
-    extra: ['Exemplo do modelo', 'É aqui que o nazismo entra.'] },
-  { cor: '#0998bb', nome: 'O ancap maluco', onde: 'Andar de cima, lado direito, no fundo.',
-    oque: 'Odeia tanto o Estado que quer destruir o governo, acabar com os impostos, privatizar até a polícia e deixar o livre mercado comer solto.',
-    extra: ['Nome técnico', 'Anarcocapitalista.'] },
-  { cor: '#dc3864', nome: 'O revolucionário raiz', onde: 'Andar de cima, lado esquerdo, na frente.',
-    oque: 'Quer fazer a revolução, derrubar o sistema capitalista na marra, tomar os meios de produção e focar totalmente nas lutas de classes e das minorias.',
-    extra: ['Também chamado de', 'Comunista ou radical.'] },
-  { cor: '#995dc7', nome: 'O anarquista punk', onde: 'Andar de cima, lado direito, na frente.',
-    oque: 'O anarquista clássico das antigas. Quer destruir o Estado e acabar com os patrões, mas sem governo central, criando uma sociedade livre baseada na cooperação entre grupos e minorias.' }
-];
+   x: mais Estado (−) / menos Estado (+) · y: dentro das regras (−) / rompeu as regras (+) · z: conserva, fundo (−) / transforma, frente (+)
+   Os textos vêm de DADOS, montado pelo build a partir de dados.py. */
+const VALORES = [['Mais Estado', 'Menos Estado'], ['Dentro das regras', 'Rompeu as regras'], ['Conserva', 'Transforma']];
+const OCTANTES = DADOS.octantes.map(d => ({ cor: d.cor, cod: d.cod, frase: d.frase, govs: d.govs }));
 OCTANTES.forEach((o, i) => {
   o.n = i + 1; o.s = [i & 1 ? 1 : -1, i & 4 ? 1 : -1, i & 2 ? 1 : -1]; o.lab = hexLab(o.cor);
-  o.curto = o.nome.replace(/^O /, '').replace(/^./, c => c.toUpperCase());
+  o.nome = o.s.map((v, k) => VALORES[k][v < 0 ? 0 : 1]).join(' · ');
+  o.curto = VALORES[0][o.s[0] < 0 ? 0 : 1] + ' · ' + VALORES[2][o.s[2] < 0 ? 0 : 1].toLowerCase();
+  o.pagina = 'octante-' + o.n + '.html';
 });
-const VALORES = [['Estado', 'Mercado'], ['Institucional', 'Ruptura'], ['Indivíduo', 'Grupos']];
 const idxDe = (x, y, z) => (x >= 0 ? 1 : 0) + (z >= 0 ? 2 : 0) + (y >= 0 ? 4 : 0);
 
-/* Os pares que o plano junta e o cubo separa. */
-const MARCOS = [
-  { nome: 'Fascismo clássico', plano: [-0.66, 0.64], cubo: [-0.74, 0.78, -0.22], par: 0 },
-  { nome: 'Social-democracia nórdica', plano: [-0.3, 0.3], cubo: [-0.5, -0.55, 0.6], par: 0 },
-  { nome: 'Anarcocapitalista radical', plano: [0.64, -0.66], cubo: [0.72, 0.26, -0.7], par: 1 },
-  { nome: 'Conservador fiscal moderado', plano: [0.3, -0.3], cubo: [0.55, -0.62, -0.4], par: 1 }
-];
+/* Os pares que o plano junta e o cubo separa: um governo que rompeu as regras e outro que não, com a mesma economia e os mesmos costumes. */
+const MARCOS = DADOS.marcos;
 
 const VISTAS = {
   perspectiva: { cam: [34, 22, 1.95], nome: 'Perspectiva', nota: '' },
   fachada: { cam: [0, 0, 1.5], nome: 'Fachada', nota: 'Fachada: vista de frente, sem profundidade. Os octantes da frente cobrem os do fundo, e o cubo volta a parecer o plano.' },
-  lateral: { cam: [90, 0, 1.5], nome: 'Lateral', nota: 'Lateral: vista de lado. Estado e mercado ficam um atrás do outro, e a economia some da vista.' },
-  planta: { cam: [0, 89.5, 1.5], nome: 'Planta', nota: 'Planta: vista de cima. Os dois andares se sobrepõem, e a dinâmica some da vista.' }
+  lateral: { cam: [90, 0, 1.5], nome: 'Lateral', nota: 'Lateral: vista de lado. Mais e menos Estado ficam um atrás do outro, e o eixo da economia some da vista.' },
+  planta: { cam: [0, 89.5, 1.5], nome: 'Planta', nota: 'Planta: vista de cima. Os dois andares se sobrepõem, e o eixo do poder some da vista.' }
 };
 
 /* =========================================================
@@ -635,14 +640,14 @@ const CENAS = {
   linha: { sy: 0.075, sz: 0.075, cL: 1, cC: 0, wArame: 0, wMeio: 0, wSombra: 0, wEspec: 1, nevoa: 0, cam: [0, 0, 1.2], vista: 'Fachada' },
   plano: CENA_PLANO,
   planoA: Object.assign({}, CENA_PLANO, { wQuad: 0, wMarcos: 1, marcos: 'plano', parFoco: 0, circulo: 0, wCirculo: 1, fantasma: [0.8, 0.8, 0.8, 0.8, 0, 0.8, 0, 0.8] }),
-  planoB: Object.assign({}, CENA_PLANO, { wQuad: 0, wMarcos: 1, marcos: 'plano', parFoco: 1, circulo: 1, wCirculo: 1, fantasma: [0.8, 0, 0.8, 0, 0.8, 0.8, 0.8, 0.8] }),
+  planoB: Object.assign({}, CENA_PLANO, { wQuad: 0, wMarcos: 1, marcos: 'plano', parFoco: 1, circulo: 1, wCirculo: 1, fantasma: [0.8, 0.8, 0.8, 0.8, 0.8, 0, 0.8, 0] }),
   cubo: { cam: [34, 20, 1.95], wCotas: 1, wX: 1, wY: 1, wZ: 1, wMeio: 0.55 },
   eixoX: { cam: [16, 14, 1.95], wCotas: 1, wX: 1, varre: 1, eixo: 0 },
   eixoY: { cam: [38, 8, 1.95], wCotas: 1, wY: 1, varre: 1, eixo: 1 },
   eixoZ: { cam: [66, 20, 1.95], wCotas: 1, wZ: 1, varre: 1, eixo: 2 },
   predio: { cam: [30, 12, 2.15], lift: 0.42, wAndares: 1, wCotas: 1, wX: 1, wZ: 1, wMeio: 0.4 },
   octantes: { cam: [38, 24, 2.3], gap: 0.15, cC: 0.3, cO: 0.7, wTags: 1, wMeio: 0 },
-  casais: { cam: [44, 18, 2.15], gap: 0.05, wMarcos: 1, marcos: 'cubo', wMeio: 0.3, wTags: 0.9, fantasma: [0.72, 0, 0, 0.72, 0, 0, 0.72, 0.72] },
+  casais: { cam: [44, 18, 2.15], gap: 0.05, wMarcos: 1, marcos: 'cubo', wMeio: 0.3, wTags: 0.9, fantasma: [0, 0, 0.72, 0.72, 0, 0, 0.72, 0.72] },
   continuo: { cam: [36, 22, 1.95], corte: 1, wPonto: 1, passeio: true }
 };
 const CAPITULOS = { topo: null, linha: 'linha', plano: 'plano', cubo: 'cubo', explorar: 'explorar' };
@@ -1290,7 +1295,8 @@ function por(r, x, y, a, ax, ay) {
   }
   if (r.a === 0) r.el.style.visibility = 'visible';
   if (!r.w) { r.w = r.el.offsetWidth; r.h = r.el.offsetHeight; }
-  const tx = Math.round(x + (ax === undefined ? -0.5 : ax) * r.w), ty = Math.round(y + (ay === undefined ? -0.5 : ay) * r.h);
+  // nenhum rótulo sai da tela: perto da borda, ele encosta na margem
+  const tx = clamp(Math.round(x + (ax === undefined ? -0.5 : ax) * r.w), 4, Math.max(4, W - r.w - 4)), ty = Math.round(y + (ay === undefined ? -0.5 : ay) * r.h);
   if (tx !== r.x || ty !== r.y) { r.el.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0)'; r.x = tx; r.y = ty; }
   const aa = Math.round(a * 50) / 50;
   if (aa !== r.a) { r.el.style.opacity = String(aa); r.a = aa; }
@@ -1304,9 +1310,9 @@ const RT = {
   cota: [0, 1, 2].map(k => ({
     neg: rotulo(VALORES[k][0], 'tag--fim'),
     pos: rotulo(VALORES[k][1], 'tag--fim'),
-    nome: rotulo(['Economia', 'Dinâmica', 'Visão social'][k], 'tag--nome')
+    nome: rotulo(['Economia', 'Poder', 'Costumes'][k], 'tag--nome')
   })),
-  andar: [rotulo('Andar de baixo<small>institucional</small>', 'tag--andar'), rotulo('Andar de cima<small>ruptura</small>', 'tag--andar')],
+  andar: [rotulo('Andar de baixo<small>dentro das regras</small>', 'tag--andar'), rotulo('Andar de cima<small>rompeu as regras</small>', 'tag--andar')],
   oct: OCTANTES.map(o => rotulo(String(o.n), 'tag--oct', o.cor)),
   marco: MARCOS.map(m => rotulo('<i></i><span>' + m.nome + '</span>', 'tag--marco')),
   ponto: rotulo('', 'tag--ponto')
@@ -1345,6 +1351,24 @@ function rotularCota(eixo, r) {
   }
 }
 
+/* "Menos Estado" e "Transforma" moram no mesmo canto do cubo (frente, embaixo, à direita).
+   Se os dois rótulos se encostarem, cada um recua pela própria linha até se separarem. */
+function separarPontas() {
+  const a = RT.cota[0].pos, b = RT.cota[2].pos, ta = telaCota[0], tb = telaCota[2];
+  if (!ta || !tb || !(a.a > 0.01) || !(b.a > 0.01)) return;
+  const folga = 4;
+  const sobre = (r, q) => !(r.x + r.w + folga < q.x || q.x + q.w + folga < r.x || r.y + r.h + folga < q.y || q.y + q.h + folga < r.y);
+  let mudou = false;
+  for (let passo = 0; passo < 12 && sobre(a, b); passo++) {
+    mudou = true;
+    [[a, ta], [b, tb]].forEach(([r, t]) => {
+      const dx = t.b[0] - t.a[0], dy = t.b[1] - t.a[1], L = Math.hypot(dx, dy) || 1;
+      r.x = Math.round(r.x - dx / L * 5); r.y = Math.round(r.y - dy / L * 5);
+    });
+  }
+  if (mudou) [a, b].forEach(r => { r.el.style.transform = 'translate3d(' + r.x + 'px,' + r.y + 'px,0)'; });
+}
+
 function atualizarRotulos() {
   // espectro
   const wE = S.wEspec.x;
@@ -1369,6 +1393,7 @@ function atualizarRotulos() {
   });
   // cotas
   [0, 1, 2].forEach(k => rotularCota(k, RT.cota[k]));
+  separarPontas();
   // andares
   const wN = S.wAndares.x;
   RT.andar.forEach((r, i) => {
@@ -1529,7 +1554,7 @@ function montarLista() {
   [['Andar de cima', [4, 5, 6, 7]], ['Andar de baixo', [0, 1, 2, 3]]].forEach(([titulo, ids]) => {
     const bloco = document.createElement('div');
     bloco.innerHTML = '<h3>' + titulo + '</h3><ul>' + ids.map(i =>
-      '<li><button type="button" data-oct="' + i + '" aria-pressed="false" style="--c:' + OCTANTES[i].cor + '"><span class="num" aria-hidden="true">' + (i + 1) + '</span>' + OCTANTES[i].nome + '</button></li>').join('') + '</ul>';
+      '<li><button type="button" data-oct="' + i + '" aria-pressed="false" aria-label="Octante ' + (i + 1) + ': ' + OCTANTES[i].nome + '" style="--c:' + OCTANTES[i].cor + '"><span class="num" aria-hidden="true">' + (i + 1) + '</span>' + OCTANTES[i].curto + '</button></li>').join('') + '</ul>';
     lista.appendChild(bloco);
   });
   $$('button[data-oct]', lista).forEach(b => {
@@ -1543,6 +1568,14 @@ function montarLista() {
       $$('button[data-oct]', lista).forEach(o => o.setAttribute('aria-pressed', String(+o.dataset.oct === fixoLista)));
       focarLista(fixoLista);
     });
+  });
+  // a lista de páginas no fim da história também acende o octante
+  $$('#lista-pag a[data-oct]').forEach(a => {
+    const i = +a.dataset.oct;
+    a.addEventListener('mouseenter', () => focarLista(i));
+    a.addEventListener('mouseleave', () => focarLista(fixoLista));
+    a.addEventListener('focus', () => focarLista(i));
+    a.addEventListener('blur', () => focarLista(fixoLista));
   });
 }
 function focarLista(i) {
@@ -1591,15 +1624,16 @@ function renderFicha(animar) {
   } else {
     const o = OCTANTES[ex.sel];
     f.style.setProperty('--c', o.cor);
-    const chips = o.s.map((v, k) => '<li>' + VALORES[k][v < 0 ? 0 : 1] + '</li>').join('');
+    const govs = o.govs.map(g => '<li><a href="' + o.pagina + '#' + g.id + '">' + g.rotulo + '</a> <span>' + g.anos + '</span></li>').join('');
     f.innerHTML =
       '<div class="ficha-cab"><p class="ficha-topo"><i aria-hidden="true"></i>Octante ' + o.n + ' de 8</p>' +
       '<div class="ficha-nav"><button class="btn btn--mini" type="button" data-passo="-1" aria-label="Octante anterior">Anterior</button>' +
       '<button class="btn btn--mini" type="button" data-passo="1" aria-label="Próximo octante">Próximo</button></div></div>' +
       '<h3>' + o.nome + '</h3>' +
-      '<ul class="chips" aria-label="Posição nos três eixos">' + chips + '</ul>' +
-      '<dl><dt>Onde fica</dt><dd>' + o.onde + '</dd><dt>O que é</dt><dd>' + o.oque + '</dd>' +
-      (o.extra ? '<dt>' + o.extra[0] + '</dt><dd>' + o.extra[1] + '</dd>' : '') + '</dl>';
+      '<p class="ficha-frase">' + o.frase + '</p>' +
+      '<p class="ficha-rot">' + (o.govs.length === 1 ? 'O governo que passou nos três testes' : 'Os governos que passaram nos três testes') + '</p>' +
+      '<ul class="ficha-govs">' + govs + '</ul>' +
+      '<a class="btn btn--oct" href="' + o.pagina + '">Abrir a página do octante ' + o.n + '</a>';
     $$('[data-passo]', f).forEach(b => b.addEventListener('click', () => selecionar((ex.sel + +b.dataset.passo + 8) % 8)));
   }
   if (animar && !reduz) { f.classList.remove('troca'); void f.offsetWidth; f.classList.add('troca'); }
@@ -1652,15 +1686,16 @@ $('#b-girar').addEventListener('click', () => {
 });
 
 /* Seu ponto: três perguntas, três barras */
-const LADOS = [['o Estado', 'o mercado'], ['o lado institucional', 'a ruptura'], ['o indivíduo', 'os grupos']];
-const NOMES_EIXO = ['na economia', 'na dinâmica', 'na visão social'];
+const LADOS = [['mais Estado', 'menos Estado'], ['dentro das regras', 'romper as regras'], ['conservar os costumes', 'transformar os costumes']];
+const NOMES_EIXO = ['na economia', 'no poder', 'nos costumes'];
 const juntar = l => (l.length < 2 ? l[0] || '' : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]);
 function descrever(p) {
   const partes = [], muro = [];
   p.forEach((v, k) => {
     const a = Math.abs(v);
     if (a < 0.1) { muro.push(NOMES_EIXO[k]); return; }
-    partes.push((a < 0.4 ? 'um pouco' : a < 0.75 ? 'bastante' : 'totalmente') + ' para ' + LADOS[k][v < 0 ? 0 : 1]);
+    const pc = Math.round(50 + 50 * a);
+    partes.push((pc <= 62 ? 'um pouco' : pc <= 80 ? 'bastante' : 'muito') + ' para ' + LADOS[k][v < 0 ? 0 : 1]);
   });
   if (!partes.length) return 'Fica em cima do muro nas três perguntas.';
   let t = 'Pende ' + juntar(partes);
@@ -1908,10 +1943,33 @@ if (iniciarGL()) {
   document.body.appendChild(aviso);
 }
 
+/* Endereços vindos das outras páginas:
+   #octante-N abre o explorador com o octante escolhido;
+   #ponto=x,y,z (do teste) marca o ponto, com cada coordenada entre -1 e 1. */
+function abrirHash() {
+  const m = /^#octante-([1-8])$/.exec(location.hash);
+  if (m) {
+    selecionar(+m[1] - 1);
+    mostrarAba('aba-oct');
+    requestAnimationFrame(() => irPara('explorar'));
+    return true;
+  }
+  const q = /^#ponto=(-?[01](?:\.\d+)?),(-?[01](?:\.\d+)?),(-?[01](?:\.\d+)?)$/.exec(location.hash);
+  if (!q) return false;
+  const p = [q[1], q[2], q[3]].map(v => Math.max(-1, Math.min(1, parseFloat(v))));
+  if (p.some(v => !isFinite(v))) return false;
+  definirPonto(p);
+  mostrarAba('aba-ponto');
+  requestAnimationFrame(() => irPara('explorar'));
+  return true;
+}
+addEventListener('hashchange', abrirHash);
+
 aplicarCena('topo');
 for (const k in S) { S[k].x = S[k].t; S[k].v = 0; }
 cam.yaw.x = cam.yaw.t; cam.pitch.x = cam.pitch.t; cam.R.x = cam.R.t; cam.ox.x = cam.ox.t; cam.oy.x = cam.oy.t;
 observar();
+abrirHash();
 requestAnimationFrame(t => { ultimo = t; requestAnimationFrame(quadro); });
 })();
 

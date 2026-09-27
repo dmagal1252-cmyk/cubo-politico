@@ -1,46 +1,49 @@
-# Cubo Político
+# O Cubo Político
 
-Página interativa que apresenta O Cubo Político, o modelo de classificação política criado pelo Shanti. No lugar da régua esquerda-direita, o modelo usa três eixos independentes (economia, dinâmica e visão social) que formam um cubo com oito octantes.
+Site estático que apresenta o modelo de classificação política do Shanti: no lugar da régua esquerda-direita, três perguntas independentes formam um cubo com oito octantes.
 
-## Como abrir
+- `index.html`: o cubo 3D, a história em rolagem e o explorador.
+- `octante-1.html` a `octante-8.html`: uma página por octante, com critérios, governos, evidência, contraprova e fontes.
+- `metodo.html`: as regras, os casos fora do cubo, as perguntas frequentes e como o teste classifica.
+- `teste.html`: o teste de 24 afirmações na escala de sete pontos do 16Personalities.
+- `api/contagem.js`: a função do Vercel que conta quantos testes deram cada resultado.
+- `fonte/`: o gerador do site (Python) e os testes. Não vai para o ar.
 
-Dê dois cliques em `Cubo Politico.bat` ou direto em `index.html`. A página abre no navegador padrão e funciona sem internet: HTML, CSS, JavaScript e a fonte (Archivo) estão dentro do mesmo arquivo.
+## Abrir no computador
 
-## Deploy no Vercel
+Dois cliques em `Cubo Politico.bat` ou em `index.html`. Tudo funciona sem internet, menos a contagem do teste, que precisa do Vercel.
 
-A pasta já é um site estático pronto: `index.html` na raiz, `vercel.json` com cabeçalhos de segurança e cache, `og.png` como prévia para WhatsApp e redes, e `.vercelignore` deixando o `.bat` e este README de fora.
+## Publicar
 
-- Pelo terminal, dentro desta pasta: `npx vercel` (primeira vez, cria o projeto) e depois `npx vercel --prod`.
-- Pelo site: suba a pasta para um repositório no GitHub e importe em vercel.com/new. Framework Preset: Other; sem comando de build; Output Directory vazio (a raiz).
+1. Dois cliques em `Enviar para o GitHub.bat`. Na primeira vez, o navegador abre para você entrar no GitHub.
+2. No Vercel, importe o repositório `cubo-politico` (vercel.com/new). Framework Preset: Other. Sem comando de build. Output Directory vazio.
+3. Se o endereço final não for `https://cubo-politico.vercel.app`, gere o site de novo com o endereço certo (veja "Gerar de novo"), porque a prévia do WhatsApp precisa do endereço completo.
 
-Depois do primeiro deploy, troque em `index.html` o `content="/og.png"` pelo endereço completo (ex.: `https://seu-projeto.vercel.app/og.png`). O WhatsApp só mostra a imagem da prévia com URL absoluta.
+## Ligar a contagem do teste (5 minutos)
 
-## O que tem na página
+Sem este passo o teste funciona normalmente; só a frase "57 dos 412 testes feitos até agora deram este resultado" não aparece.
 
-A rolagem conta a história em capítulos, e o carimbo no canto (ou a barra do rodapé, no celular) leva direto a cada um:
+1. No Vercel, abra o projeto e vá em Storage.
+2. Clique em Create Database, escolha Upstash for Redis, plano Free, e conecte ao projeto.
+3. Em Settings > Environment Variables, confira que apareceram `KV_REST_API_URL` e `KV_REST_API_TOKEN`.
+4. Em Deployments, clique nos três pontos do último deploy e em Redeploy.
+5. Faça o teste no site. A frase da contagem aparece embaixo do resultado.
 
-1. Linha (1D): o espectro esquerda-direita e por que ele é incompleto.
-2. Plano (2D): o gráfico de quatro quadrantes e os dois casamentos forçados que o modelo aponta.
-3. Cubo (3D): os três eixos, um de cada vez; o prédio de dois andares; os oito octantes com os nomes do modelo; os pares do plano se separando; o espaço contínuo visto em corte.
-4. Explorar: o menu que muda o cubo. Dá para escolher um octante e ler a ficha, trocar o modo (Contínuo, Blocos, Andares, Corte), trocar a vista (Perspectiva, Fachada, Lateral, Planta) e responder às três perguntas para marcar o próprio ponto.
+A contagem guarda só quantos testes deram cada resultado. Nenhuma resposta sai do navegador de quem faz o teste. Para evitar contagem repetida, o endereço de internet vira um código embaralhado que se apaga em uma hora (no máximo 20 testes por hora por endereço).
 
-No explorador, arraste o cubo para girar e clique ou toque num octante para abrir a ficha. No teclado, 1 a 8 escolhem um octante, as setas giram o cubo e Esc limpa a escolha.
+## Gerar de novo
 
-## No celular
+Precisa de Python 3. Dentro da pasta `fonte`:
 
-O cubo fica na metade de cima da tela e o texto passa por baixo dele. A navegação vira uma barra no rodapé, e o explorador abre como uma gaveta com as abas Octantes, Seu ponto e Vista. Celular deitado e janelas estreitas também recebem a aba Vista. Aparelhos mais fracos recebem menos pontos automaticamente, para a animação continuar fluida.
+- `python build.py ..\index.html` gera todas as páginas na pasta de cima.
+- `python build.py ..\index.html --site=https://seu-endereco` troca o endereço das prévias.
+- `python build.py ..\index.html --sem-teste` gera o site sem o teste e sem nenhum link para ele. Apague o `teste.html` e a pasta `api` antes de publicar.
+- `python og.py ..` refaz as imagens de prévia (precisa do Playwright).
 
-## Como mexer no conteúdo
-
-Tudo fica no próprio `index.html`:
-
-- textos da história: blocos `<section class="passo ...">`;
-- octantes (nome, onde fica, o que é, exemplo e cor): constante `OCTANTES` no script;
-- os quatro exemplos que aparecem no plano e no cubo: constante `MARCOS`;
-- cores da linha e do plano: constante `CORES`.
+Os textos, os governos e as afirmações do teste ficam em `fonte/dados.py`; as fontes, em `fonte/fontes.py`.
 
 ## Se der problema
 
-- Aparecem só os traços, sem os pontos coloridos: o navegador não liberou o WebGL. Abra no Chrome, Edge, Firefox ou Safari atualizados. No Chrome e no Edge, confira se "Usar aceleração de hardware" está ligado.
-- Nada se mexe: o sistema está com "reduzir movimento" ligado (configuração de acessibilidade). A página respeita isso de propósito e mostra cada cena já pronta.
-- O `.bat` não abre: dê dois cliques direto no `index.html`.
+- Aparecem só os traços, sem os pontos coloridos: o navegador não liberou o WebGL. Abra no Chrome, Edge, Firefox ou Safari atualizados.
+- Nada se mexe: o sistema está com "reduzir movimento" ligado. A página respeita isso e mostra cada cena já pronta.
+- A contagem não aparece: confira os passos de "Ligar a contagem" e se o deploy foi refeito depois de conectar o banco.

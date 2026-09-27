@@ -1,0 +1,194 @@
+<div class="quadricula" aria-hidden="true"></div>
+<div class="faixa" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<canvas id="tinta" aria-hidden="true"></canvas>
+<div id="rotulos" aria-hidden="true"></div>
+<div id="toque" role="img" aria-label="Cubo político. Arraste para girar, toque ou clique num octante para ver os detalhes."></div>
+<div class="moldura" aria-hidden="true"></div>
+
+<header class="hero passo-cena" data-cena="topo" data-cap="topo" id="topo">
+  <h1 class="hero-titulo"><span>O Cubo</span><span>Político</span></h1>
+  <div class="hero-lado">
+    <p class="lede">Um sistema de classificação política que abandona a disputa entre esquerda e direita. No lugar de uma pergunta, faz três. Cada resposta vira um eixo, e os três eixos formam um cubo.</p>
+    <p class="credito">Modelo do Shanti. Versão 2, revisada com Davi. <a href="metodo.html">Como o cubo classifica</a></p>
+    <p class="deixa"><i aria-hidden="true"></i>Role para montar o cubo</p>
+  </div>
+</header>
+
+<main class="notas">
+  <section class="passo passo--capitulo passo-cena" id="linha" data-cena="linha" data-cap="linha">
+    <p class="dim dim--1" aria-hidden="true">1D</p>
+    <h2>Uma linha, uma pergunta</h2>
+    <p>O modelo mais conhecido coloca todo mundo numa régua, da extrema esquerda à extrema direita. É o mais simples e também o mais incompleto: tem uma dimensão só.</p>
+    <p>Tudo o que não cabe na régua desaparece. Duas pessoas que concordam sobre economia e discordam em todo o resto viram o mesmo ponto.</p>
+  </section>
+
+  <section class="passo passo--capitulo passo-cena" id="plano" data-cena="plano" data-cap="plano">
+    <p class="dim dim--2" aria-hidden="true">2D</p>
+    <h2>O plano melhora, mas força casamentos</h2>
+    <p>O gráfico de quatro quadrantes acrescenta um eixo vertical, do autoritarismo ao libertarianismo. Ajuda. Só que esse eixo achata duas coisas diferentes numa só: o que o governo faz com os costumes e se ele respeita as regras do jogo.</p>
+    <p>Daí saem agrupamentos que não se sustentam no mundo real.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="planoA" data-cap="plano">
+    <h2>Uma democracia e uma ditadura no mesmo quadrado</h2>
+    <p>A Itália de Mussolini e a Irlanda de De Valera caem juntas no alto, do lado do Estado: os dois puseram o Estado na economia e a religião na lei.</p>
+    <p>O gráfico esconde a diferença que mais importa. Mussolini proibiu os partidos de oposição em 1926. De Valera perdeu a eleição de 1948 e entregou o cargo.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="planoB" data-cap="plano">
+    <h2>Do lado do mercado, o mesmo problema</h2>
+    <p>Os EUA de Reagan e o Chile de Pinochet também dividem um quadrado: menos Estado na economia e lei a favor da tradição.</p>
+    <p>Reagan foi eleito duas vezes e passou o cargo no prazo. Pinochet chegou por um golpe em 1973 e fechou o Congresso.</p>
+  </section>
+
+  <section class="passo passo--capitulo passo-cena" id="cubo" data-cena="cubo" data-cap="cubo">
+    <p class="dim dim--3" aria-hidden="true">3D</p>
+    <h2>O cubo: três perguntas independentes</h2>
+    <p>O cubo separa o que o plano misturava. Cada eixo responde a uma pergunta sobre o que o governo fez, e a resposta de uma não depende das outras. Três eixos dividem o espaço em oito octantes.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="eixoX" data-cap="cubo">
+    <h2>Economia</h2>
+    <p class="pergunta">Quanto da economia passa pelo governo?</p>
+    <p>De um lado, mais Estado: gasto público acima da média dos países ricos, estatais, preços tabelados. Do outro, menos Estado: estatais vendidas, preços livres, comércio aberto. Menos Estado inclui nenhum Estado.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="eixoY" data-cap="cubo">
+    <h2>Poder</h2>
+    <p class="pergunta">Chegou e governou dentro das regras do jogo?</p>
+    <p>Embaixo, quem chegou e saiu pelo voto, com oposição, imprensa e tribunais funcionando. Em cima, quem rompeu as regras: golpe, Congresso fechado, eleição cancelada, oposição proibida. Basta um desses fatos para subir de andar.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="eixoZ" data-cap="cubo">
+    <h2>Costumes</h2>
+    <p class="pergunta">Para onde a lei empurrou a família, a religião, a sexualidade e o papel da mulher?</p>
+    <p>No fundo, a lei que conserva o modelo tradicional: casamento indissolúvel, religião da maioria na escola, sexo só no casamento, mulher subordinada ao marido. Na frente, a lei que transforma. O eixo mede a direção da lei, não se ela foi boa.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="predio" data-cap="cubo">
+    <h2>Pense num prédio de dois andares</h2>
+    <p>No andar de baixo ficam os governos que chegaram e saíram pelas regras. No de cima, os que romperam as regras para chegar ou para ficar.</p>
+    <p>Num lado do prédio, mais Estado na economia; no outro, menos. Na frente, leis que transformam os costumes; nos fundos, leis que conservam.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="octantes" data-cap="cubo">
+    <h2>Oito octantes, oito combinações</h2>
+    <p>Cada combinação de respostas cai numa região do cubo. O número vem da posição, e o nome são as próprias respostas.</p>
+    <div class="lista-oct" id="lista-oct"></div>
+    <p class="nota">Passe o mouse ou toque numa combinação para ver onde ela fica.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="casais" data-cap="cubo">
+    <h2>No cubo, cada um vai para o seu andar</h2>
+    <p>Uma pergunta separa os pares: chegou e governou dentro das regras? Mussolini sobe para o octante 5, e De Valera fica no 1. Pinochet sobe para o 6, e Reagan fica no 2.</p>
+    <p>A economia e os costumes continuam iguais dentro de cada par. Só o andar muda.</p>
+  </section>
+
+  <section class="passo passo-cena" data-cena="continuo" data-cap="cubo">
+    <h2>Oito regiões de um cubo só</h2>
+    <p>Os oito cubinhos são regiões de um mesmo espaço contínuo. Cada governo é um ponto com três coordenadas, uma por pergunta.</p>
+    <p>O octante diz em que região o ponto está. A posição exata mostra o quanto ele pende para cada lado. No corte, dá para ver as cores mudando aos poucos por dentro do cubo.</p>
+  </section>
+
+  <section class="passo passo-cena" id="governos" data-cena="octantes" data-cap="cubo">
+    <h2>Governos de verdade, com prova</h2>
+    <p>Cada octante tem uma página com os critérios e os governos que passaram nos três testes. Em cada eixo, a melhor evidência, a melhor contraprova e a fonte. E o custo humano, com a mesma régua para todos.</p>
+    <!--LISTA_PAGINAS-->
+    <p class="links-fim"><a class="link" href="metodo.html">Como o cubo classifica um governo</a><a class="link" href="teste.html">Onde você fica? Faça o teste</a><button class="link" type="button" data-ir="explorar">Abrir o explorador</button></p>
+  </section>
+
+  <section class="passo passo--explorar passo-cena" id="explorar" data-cena="explorar" data-cap="explorar" aria-labelledby="exp-tit">
+    <div class="painel-exp" id="painel-exp">
+      <div class="painel-cab">
+        <h2 id="exp-tit">Explore o cubo</h2>
+        <p>Escolha um octante para ver os governos que caem nele, mude a vista ou marque um ponto com as três perguntas.</p>
+        <div class="abas" role="tablist" aria-label="Painel do cubo">
+          <button role="tab" id="aba-oct" aria-controls="painel-oct" aria-selected="true">Octantes</button>
+          <button role="tab" id="aba-ponto" aria-controls="painel-ponto" aria-selected="false" tabindex="-1">Marcar ponto</button>
+          <button role="tab" id="aba-vista" class="aba-vista" aria-controls="painel-vista" aria-selected="false" tabindex="-1">Vista</button>
+        </div>
+      </div>
+      <div class="painel-corpo">
+        <div role="tabpanel" id="painel-oct" aria-labelledby="aba-oct">
+          <div class="plantas">
+            <div class="planta">
+              <h3>Andar de cima</h3>
+              <div class="planta-grade" data-andar="1"></div>
+            </div>
+            <div class="planta">
+              <h3>Andar de baixo</h3>
+              <div class="planta-grade" data-andar="0"></div>
+            </div>
+          </div>
+          <p class="legenda">Cada andar visto de cima: mais Estado à esquerda, menos Estado à direita, conserva em cima e transforma embaixo.</p>
+          <article class="ficha" id="ficha" aria-live="polite"></article>
+          <p class="atalhos">No teclado: 1 a 8 escolhem um octante, as setas giram o cubo e Esc limpa a escolha.</p>
+        </div>
+        <div role="tabpanel" id="painel-ponto" aria-labelledby="aba-ponto" hidden>
+          <p class="teste-link">Prefere responder afirmações? <a href="teste.html">Faça o teste</a>: 24 afirmações, cerca de 5 minutos, e o ponto aparece aqui.</p>
+          <div class="q">
+            <label for="r-x"><span>Economia</span>Quanto da economia passa pelo governo?</label>
+            <input type="range" id="r-x" min="-100" max="100" step="1" value="0" data-eixo="0">
+            <div class="pontas" aria-hidden="true"><span>Mais Estado</span><span>Menos Estado</span></div>
+          </div>
+          <div class="q">
+            <label for="r-y"><span>Poder</span>Chegou e governou dentro das regras do jogo?</label>
+            <input type="range" id="r-y" min="-100" max="100" step="1" value="0" data-eixo="1">
+            <div class="pontas" aria-hidden="true"><span>Dentro das regras</span><span>Rompeu as regras</span></div>
+          </div>
+          <div class="q">
+            <label for="r-z"><span>Costumes</span>Para onde a lei empurrou os costumes?</label>
+            <input type="range" id="r-z" min="-100" max="100" step="1" value="0" data-eixo="2">
+            <div class="pontas" aria-hidden="true"><span>Conserva</span><span>Transforma</span></div>
+          </div>
+          <div class="leitura" aria-live="polite">
+            <p class="leitura-tit" id="leitura-tit"></p>
+            <p class="leitura-nome" id="leitura-nome"></p>
+            <p class="leitura-txt" id="leitura-txt"></p>
+            <p class="leitura-coord" id="leitura-coord"></p>
+          </div>
+          <div class="acoes">
+            <button class="btn" type="button" id="b-centro">Voltar ao centro</button>
+            <button class="btn" type="button" id="b-sortear">Sortear um ponto</button>
+            <button class="btn" type="button" id="b-ver">Ver o octante</button>
+          </div>
+        </div>
+        <div role="tabpanel" id="painel-vista" aria-labelledby="aba-vista" hidden></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="barra-vista" id="barra-vista" role="toolbar" aria-label="Como mostrar o cubo">
+  <div class="seg" role="group" aria-label="Mostrar">
+    <span class="seg-tit" aria-hidden="true">Mostrar</span>
+    <button type="button" data-modo="continuo" aria-pressed="true" title="O cubo inteiro, com as cores mudando aos poucos">Contínuo</button>
+    <button type="button" data-modo="blocos" aria-pressed="false" title="Os oito octantes separados">Blocos</button>
+    <button type="button" data-modo="andares" aria-pressed="false" title="O andar de cima levantado, como num prédio">Andares</button>
+    <button type="button" data-modo="corte" aria-pressed="false" title="Um canto do cubo removido a partir do seu ponto">Corte</button>
+  </div>
+  <div class="seg" role="group" aria-label="Vista">
+    <span class="seg-tit" aria-hidden="true">Vista</span>
+    <button type="button" data-vista="perspectiva" aria-pressed="true">Perspectiva</button>
+    <button type="button" data-vista="fachada" aria-pressed="false">Fachada</button>
+    <button type="button" data-vista="lateral" aria-pressed="false">Lateral</button>
+    <button type="button" data-vista="planta" aria-pressed="false">Planta</button>
+  </div>
+  <button type="button" class="alternar" id="b-girar" aria-pressed="false"><i aria-hidden="true"></i>Girar sozinho</button>
+  <p class="nota-vista" id="nota-vista" aria-live="polite"></p>
+</div>
+<p class="dica-arraste">Arraste o cubo para girar.</p>
+<div class="dica-hover" id="dica-hover" aria-hidden="true"></div>
+
+<aside class="carimbo" aria-label="Carimbo da prancha">
+  <div class="carimbo-tit"><strong>O Cubo Político</strong><span>Modelo de Shanti · versão 2</span></div>
+  <div class="carimbo-vista"><span>Vista</span><b id="carimbo-vista">Perspectiva</b></div>
+  <nav class="carimbo-nav" aria-label="Capítulos">
+    <button type="button" data-ir="linha"><small>1D</small>Linha</button>
+    <button type="button" data-ir="plano"><small>2D</small>Plano</button>
+    <button type="button" data-ir="cubo"><small>3D</small>Cubo</button>
+    <button type="button" data-ir="explorar"><small>Menu</small>Explorar</button>
+  </nav>
+</aside>
+<noscript><p>Esta página usa JavaScript para desenhar o cubo. O texto do modelo aparece normalmente; ative o JavaScript para ver as animações e o explorador.</p></noscript>

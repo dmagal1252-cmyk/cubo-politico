@@ -1,0 +1,8 @@
+# arquivos só do computador do Davi
+*.bat
+_antigo/
+.vercel/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.pdf
